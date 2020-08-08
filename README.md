@@ -3,18 +3,32 @@
 
 This docker image installs and runs the AceStream Engine in Ubuntu and exposes the AceStream [HTTP API](https://wiki.acestream.media/index.php?title=Engine_HTTP_API#API_methods).
 
-This is especially useful for those of us on MacBooks who want to tune in to AceStream channels, but aren't able to run AceStream natively.
+As a result, you will be able to watch live AceStream sources without needing to install the AceStream player or similar dependencies locally.
+
+This is especially useful for MacOS, Raspberry Pi's and XMBC users who want to tune in to AceStream channels.
 
 ## Usage
+
+Ensure you have [docker](https://www.docker.com) installed and running. You can then pull down and run the container as shown below.
 
 ```sh
 $ docker run -t -p 6878:6878 martinbjeldbak/acestream-http-proxy
 ```
 
-You are then able to access AceSream content by pointing your favorite media player (VLC, IINA, etc.) to the below network URL
+You are then able to access live AceSream content by pointing your favorite media player (VLC, IINA, etc.) to the below network URL
 
 ```
 http://127.0.0.1:6878/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2d
 ```
 
 Where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStream channel.
+
+## Contributing
+
+Ensure you have docker installed with support for docker-compose.
+
+For convenience of easy image rebuilding, this repository contains a [` docker-compose.yml` ](https://github.com/martinbjeldbak/acestream-http-proxy/blob/master/docker-compose.yml) file. You can then build & run the image locally by running the following command
+
+```sh
+$ docker-compose up --build
+```
