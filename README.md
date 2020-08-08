@@ -1,4 +1,5 @@
 # AceStream HTTP Proxy
+![Build and push Docker image to DockerHub](https://github.com/martinbjeldbak/acestream-http-proxy/workflows/Build%20and%20push%20Docker%20image%20to%20DockerHub/badge.svg)
 
 This docker image installs and runs the AceStream Engine in Ubuntu and exposes the AceStream [HTTP API](https://wiki.acestream.media/index.php?title=Engine_HTTP_API#API_methods).
 
