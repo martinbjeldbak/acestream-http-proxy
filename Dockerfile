@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-MAINTAINER Martin Bjeldbak Madsen <me@martinbjeldbak.com>
+LABEL maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>"
 
 ENV ACESTREAM_VERSION="3.1.49_ubuntu_18.04_x86_64"
 
