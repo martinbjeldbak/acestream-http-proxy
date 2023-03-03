@@ -28,6 +28,10 @@ Where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStr
 
 Ensure you have docker installed with support for docker-compose.
 
+Dockerfile steps are roughly guided by <https://wiki.acestream.media/Install_Ubuntu> and AUR packages https://aur.archlinux.org/packages/acestream-engine-stable
+
+For a list of AceStream versions, see here: <https://docs.acestream.net/products/#linux>
+
 For convenience of easy image rebuilding, this repository contains a [` docker-compose.yml` ](https://github.com/martinbjeldbak/acestream-http-proxy/blob/master/docker-compose.yml) file. You can then build & run the image locally by running the following command
 
 ```sh
