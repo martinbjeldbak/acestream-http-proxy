@@ -27,5 +27,6 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         push: true
+        sbom: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
