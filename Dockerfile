@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3-setuptools \
     libpython3.8-dev \
     libssl-dev \
+    libxml2-dev \
+    libxslt-dev \
     swig \
     libffi-dev \
     net-tools \
