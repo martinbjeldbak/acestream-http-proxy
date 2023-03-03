@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:18.04
 
 LABEL maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>"
 
