@@ -5,7 +5,7 @@ LABEL maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>"
 
 ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     wget \
     python3.8 \
