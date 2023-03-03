@@ -25,6 +25,8 @@ RUN wget --progress=dot:giga "https://download.acestream.media/linux/acestream_$
     tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream && \
     mv acestream /opt/acestream
 
+# Document that we are exposing this as the HTTP API port
 EXPOSE 6878
 
-CMD ["/opt/acestream/start-engine", "--client-console"]
+ENTRYPOINT ["/opt/acestream/start-engine"]
+CMD ["--client-console"]
