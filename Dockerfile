@@ -6,17 +6,20 @@ ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 
 RUN apt-get update
 RUN apt-get install --no-install-recommends -y \
-        build-essential \
-        wget \
-        python3.8 \
-        python3-dev \
-        python3-pip \
-        python3-setuptools \
-        libpython3.8-dev \
-        libssl-dev \
-        swig \
-        libffi-dev \
-        net-tools
+    build-essential \
+    wget \
+    python3.8 \
+    python3-dev \
+    python3-pip \
+    python3-setuptools \
+    libpython3.8-dev \
+    libssl-dev \
+    swig \
+    libffi-dev \
+    net-tools
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN python3.8 -m pip install --no-cache-dir certifi PyNaCl pycryptodome apsw lxml
 
