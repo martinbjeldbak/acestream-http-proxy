@@ -18,7 +18,7 @@ RUN apt-get install --no-install-recommends -y \
         libffi-dev \
         net-tools
 
-RUN python3.8 -m pip install certifi PyNaCl pycryptodome apsw lxml
+RUN python3.8 -m pip install --no-cache-dir certifi PyNaCl pycryptodome apsw lxml
 
 RUN wget --progress=dot:giga "https://download.acestream.media/linux/acestream_${ACESTREAM_VERSION}.tar.gz" && \
     mkdir acestream && \

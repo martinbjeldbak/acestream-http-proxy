@@ -1,0 +1,3 @@
+ignored:
+  - "DL3008" # pin versions in apt install
+  - "DL3013" # pin versions in pip
