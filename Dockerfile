@@ -10,7 +10,7 @@ RUN apt-get update && \
         python-m2crypto=0.27.0-5 python-apsw=3.16.2-r1-2build2 \
         net-tools=1.60+git20161116.90da8a0-1ubuntu1 python-lxml=4.2.1-1ubuntu0.1 && \
       apt-get clean && rm -rf /var/lib/apt/lists/* && \
-      wget "http://acestream.org/downloads/linux/acestream_${ACESTREAM_VERSION}.tar.gz" && \
+      wget --progress=dot:giga "http://acestream.org/downloads/linux/acestream_${ACESTREAM_VERSION}.tar.gz" && \
       mkdir acestream && \
       tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream && \
       mv acestream /opt/acestream
