@@ -48,7 +48,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Docker Hub Description
+      - name: Update Docker Hub Description
         uses: peter-evans/dockerhub-description@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
