@@ -41,6 +41,6 @@ jobs:
         push: true
         sbom: true
         provenance: true
-        platforms: linux/amd64,linux/arm64,darwin/amd64,darwin/arm64
+        platforms: linux/amd64,linux/arm64
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
