@@ -12,8 +12,8 @@ LABEL \
 ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
-    build-essential \
     wget \
+    gcc \
     python3.8 \
     python3-dev \
     python3-pip \
