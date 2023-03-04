@@ -1,7 +1,13 @@
 # syntax=docker/dockerfile:1
 FROM ubuntu:18.04
 
-LABEL maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>"
+LABEL \
+    maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
+    org.opencontainers.image.title="acestream-http-proxy" \
+    org.opencontainers.image.description="Stream AceStream sources on macOS and other systems without needing to install AceStream player" \
+    org.opencontainers.image.authors="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
+    org.opencontainers.image.url="https://github.com/martinbjeldbak/acestream-http-proxy" \
+    org.opencontainers.image.vendor="https://martinbjeldbak.com"
 
 ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 
