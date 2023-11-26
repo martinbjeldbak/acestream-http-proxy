@@ -15,7 +15,7 @@ ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN apt-get update \
-  && apt-get install --no-install-recommends -y curl debian-keyring debian-archive-keyring apt-transport-https \
+  && apt-get install --no-install-recommends -y curl gpg ca-certificates debian-keyring debian-archive-keyring apt-transport-https \
   && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg \
   && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list \
   #
