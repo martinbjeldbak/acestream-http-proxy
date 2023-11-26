@@ -4,9 +4,13 @@
 
 This docker image installs and runs the AceStream Engine in Ubuntu and exposes the [HTTP API](https://docs.acestream.net/en/developers/connect-to-engine/).
 
-As a result, you will be able to watch live AceStream sources without needing to install the AceStream player or other dependencies locally.
+As a result, you will be able to watch live AceStream sources without needing
+to install the AceStream player or other dependencies locally.
 
-This is especially useful for MacOS, Raspberry Pi's and XMBC users who want to tune in to AceStream channels.
+This is especially useful for Desktop and NAS usage for anyone who wants to
+tune in to AceStream channels.
+
+Note: ARM-based CPUs are not currently supported, see issues [#5] and [#13].
 
 ## Usage
 
@@ -78,4 +82,5 @@ through Caddy. This is the sever Caddy reverse proxies. This takes the following
 [Caddy]: https://caddyserver.com/
 [caddy-auto-https]: https://caddyserver.com/docs/automatic-https
 [Let's Encrypt]: https://letsencrypt.org/
-
+[#5]: https://github.com/martinbjeldbak/acestream-http-proxy/issues/5
+[#13]: https://github.com/martinbjeldbak/acestream-http-proxy/issues/13
