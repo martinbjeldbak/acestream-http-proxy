@@ -46,7 +46,6 @@ RUN apt-get update \
   && rm "acestream_${ACESTREAM_VERSION}.tar.gz" \
   && mv acestream /opt/acestream
 
-# Document that we are exposing this as the HTTP API port
 EXPOSE 6878/tcp
 EXPOSE 443
 EXPOSE 80
