@@ -1,0 +1,14 @@
+localhost {
+	log {
+		output file /var/log/caddy/acestream-http-proxy.log
+	}
+
+	handle_path /* {
+		route {
+			uri strip_prefix /
+			rewrite * /ace/getstream?id={uri}
+		}
+
+		reverse_proxy localhost:6878
+	}
+}

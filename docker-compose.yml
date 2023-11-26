@@ -1,6 +1,11 @@
-version: '3'
+version: '3.9'
 services:
   app:
     build: .
     ports:
       - '6878:6878'
+      - '80:80'
+      - "443:443/tcp"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/var/www/html/Caddyfile
