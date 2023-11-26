@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
 
-
 FROM ubuntu:18.04
 
 ARG USERNAME=ace
@@ -52,7 +51,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
   && mkdir acestream \
   && tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream \
   && rm "acestream_${ACESTREAM_VERSION}.tar.gz" \
-  && mv acestream /opt/acestream
+  && mv acestream /opt/acestream \
+  && usermod -aG caddy ${USERNAME}
 
 # Document that we are exposing this as the HTTP API port
 EXPOSE 6878/tcp
@@ -64,6 +64,6 @@ RUN chmod +x /usr/bin/entrypoint.sh
 
 COPY Caddyfile  /var/www/html/
 
-#USER $USERNAME # TODO: reenable
+USER $USERNAME
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["caddy", "run"]
