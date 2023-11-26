@@ -5,7 +5,6 @@ services:
     ports:
       - '6878:6878'
       - '80:80'
-      - "443:443/tcp"
-      - "443:443/udp"
+      - "443:443"
     volumes:
       - ./Caddyfile:/var/www/html/Caddyfile
