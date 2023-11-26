@@ -72,8 +72,8 @@ docker-compose up --build
 
 The image will now be running, with the following ports exposed:
 
-- **80**: [Caddy] HTTP reverse proxy
-- **443**: Caddy HTTPS reverse proxy server
+- **80**: [Caddy] HTTP reverse proxy, proxying the AceStream HTTP server but with more user friendly paths
+- **443**: Ditto, but serving HTTPS requests
 - **6878**: AceStream listener for access to the AceStream proxy without going
 through Caddy. This is the sever Caddy reverse proxies. This takes the following path:
 `/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2d`
