@@ -14,12 +14,8 @@ ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# Install acestream dependencies
 RUN apt-get update \
-  && apt-get install --no-install-recommends -y curl gpg ca-certificates debian-keyring debian-archive-keyring apt-transport-https \
-  && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg \
-  && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list \
-  #
-  # Install acestream dependencies & caddy
   && apt-get update \
   && apt-get install --no-install-recommends -y \
       gcc \
@@ -34,7 +30,6 @@ RUN apt-get update \
       swig \
       libffi-dev \
       net-tools \
-      caddy \
   && rm -rf /var/lib/apt/lists/* \
   #
   && python3.8 -m pip install --no-cache-dir certifi PyNaCl pycryptodome apsw lxml \
@@ -47,13 +42,6 @@ RUN apt-get update \
   && mv acestream /opt/acestream
 
 EXPOSE 6878/tcp
-EXPOSE 443
-EXPOSE 80
 
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-
-COPY Caddyfile  /var/www/html/
-
-ENTRYPOINT ["entrypoint.sh"]
-CMD ["caddy", "run", "-c", "/var/www/html/Caddyfile"]
+ENTRYPOINT ["/opt/acestream/start-engine"]
+CMD ["--client-console"]
