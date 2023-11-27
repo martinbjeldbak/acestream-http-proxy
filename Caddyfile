@@ -2,6 +2,8 @@ http://localhost, https://localhost
 
 log {
 	output file /var/log/caddy/acestream-http-proxy.log
+	output stderr
+	format console
 }
 
 handle_path /* {
