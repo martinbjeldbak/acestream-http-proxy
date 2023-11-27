@@ -56,4 +56,4 @@ RUN chmod +x /usr/bin/entrypoint.sh
 COPY Caddyfile  /var/www/html/
 
 ENTRYPOINT ["entrypoint.sh"]
-CMD ["caddy", "run"]
+CMD ["caddy", "run", "-c", "/var/www/html/Caddyfile"]
