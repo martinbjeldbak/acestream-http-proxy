@@ -3,8 +3,9 @@ services:
   app:
     build: .
     ports:
-      - '6878:6878'
+      #- '6878:6878'
       - '80:80'
       - "443:443"
+      - "1234:1234"
     volumes:
       - ./Caddyfile:/var/www/html/Caddyfile

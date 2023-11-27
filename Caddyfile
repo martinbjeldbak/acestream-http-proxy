@@ -1,16 +1,41 @@
-http://localhost, https://localhost
-
-log {
-	output file /var/log/caddy/acestream-http-proxy.log
-	output stderr
-	format console
+{
+	#debug
+	log {
+		output stderr
+		format console
+	}
 }
 
-handle_path /* {
-	route {
-		uri strip_prefix /
-		rewrite * /ace/getstream?id={uri}
+:80, :443 {
+	log {
+		output file /var/log/caddy/acestream-http-proxy.log
+		output stderr
+		format console
 	}
 
-	reverse_proxy localhost:6878
+	handle_path /ace/r/* {
+		header Access-Control-Allow-Origin "*"
+		reverse_proxy :6878 {
+			header_up +Access-Control-Allow-Origin "*"
+			header_down +Access-Control-Allow-Origin "*"
+		}
+	}
+
+	handle_path /* {
+		route {
+			uri strip_prefix /
+			rewrite * /ace/getstream?id={uri}
+			header Access-Control-Allow-Origin "*"
+			reverse_proxy localhost:6878 {
+				header_up Host {http.reverse_proxy.upstream.host}:80
+
+				header_up +Access-Control-Allow-Origin "*"
+				header_down +Access-Control-Allow-Origin "*"
+			}
+		}
+	}
+
+	handle {
+		respond "oh shit" 501
+	}
 }
