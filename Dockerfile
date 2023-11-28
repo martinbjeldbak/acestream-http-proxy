@@ -31,7 +31,7 @@ RUN apt-get update \
   && popd || exit
 
 
-EXPOSE 80/tcp
+EXPOSE 6878/tcp
 
 ENTRYPOINT ["/opt/acestream/start-engine"]
-CMD ["--client-console", "--http-port", "80"]
+CMD ["--client-console"]

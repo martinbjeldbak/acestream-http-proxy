@@ -19,7 +19,7 @@ Note: ARM-based CPUs are not currently supported, see issues [#5] and [#13].
 Ensure you have [Docker](https://www.docker.com) installed and running. You can then pull down and run the container as shown below.
 
 ```console
-docker run -t -p 80:80 ghcr.io/martinbjeldbak/acestream-http-proxy
+docker run -t -p 80:6878 ghcr.io/martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
