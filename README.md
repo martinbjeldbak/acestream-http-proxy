@@ -23,29 +23,35 @@ docker run -t -p 80:80 ghcr.io/martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
-(VLC, IINA, etc.) to either of the below URLs.
+(VLC, IINA, etc.) to either of the below URLs, depending on the desired
+streaming protocol.
 
 For HLS:
-
-    ```console
-    http://127.0.0.1:6878/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
-    ```
+```console
+http://127.0.0.1/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
+```
 
 For MPEG-TS:
 
-    ```console
-    http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
-    ```
+```console
+http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
+```
 
-where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStream channel.
+where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the AceStream channel.
 
 This image can also be deployed to a server, where it can proxy AceStream
 content over HTTP.
 
 ## Contributing
 
+First of all, thanks!
+
 Ensure you have Docker installed with support for docker-compose, as outlined
-above.
+above. This image is simply a simplified wrapper around the
+[AceStream][acestream] HTTP API in order to make it more user friendly to get
+running. All options supported by the AceStream Engine are supported in this
+project. Any contributions to support more configuration is greatly
+appreciated!
 
 Dockerfile steps are roughly guided by <https://wiki.acestream.media/Install_Ubuntu>.
 
