@@ -26,7 +26,7 @@ RUN apt-get update \
   && tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream \
   && rm "acestream_${ACESTREAM_VERSION}.tar.gz" \
   && mv acestream /opt/acestream \
-  && pushd /opt/acestream \
+  && pushd /opt/acestream || exit \
   && bash ./install_dependencies.sh \
   && popd
 
