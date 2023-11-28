@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+
 FROM ubuntu:18.04
 
 LABEL \
@@ -11,31 +12,26 @@ LABEL \
 
 ENV ACESTREAM_VERSION="3.1.75rc4_ubuntu_18.04_x86_64_py3.8"
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    wget \
-    gcc \
-    python3.8 \
-    python3-dev \
-    python3-pip \
-    python3-setuptools \
-    libpython3.8-dev \
-    libssl-dev \
-    libxml2-dev \
-    libxslt-dev \
-    swig \
-    libffi-dev \
-    net-tools \
-    && rm -rf /var/lib/apt/lists/*
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN python3.8 -m pip install --no-cache-dir certifi PyNaCl pycryptodome apsw lxml
+# Install acestream dependencies
+RUN apt-get update \
+  && apt-get install --no-install-recommends -y \
+      python3.8 ca-certificates wget sudo \
+  && rm -rf /var/lib/apt/lists/* \
+  #
+  # Download acestream
+  && wget --progress=dot:giga "https://download.acestream.media/linux/acestream_${ACESTREAM_VERSION}.tar.gz" \
+  && mkdir acestream \
+  && tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream \
+  && rm "acestream_${ACESTREAM_VERSION}.tar.gz" \
+  && mv acestream /opt/acestream \
+  && pushd /opt/acestream || exit \
+  && bash ./install_dependencies.sh \
+  && popd || exit
 
-RUN wget --progress=dot:giga "https://download.acestream.media/linux/acestream_${ACESTREAM_VERSION}.tar.gz" && \
-    mkdir acestream && \
-    tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream && \
-    mv acestream /opt/acestream
 
-# Document that we are exposing this as the HTTP API port
-EXPOSE 6878/tcp
+EXPOSE 80/tcp
 
 ENTRYPOINT ["/opt/acestream/start-engine"]
-CMD ["--client-console"]
+CMD ["--client-console", "--http-port", "80"]
