@@ -2,7 +2,7 @@
 [![Build and push Docker image to DockerHub](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/build-and-push-docker.yml/badge.svg?event=release)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/build-and-push-docker.yml)
 [![Lint](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint-dockerfile.yml/badge.svg)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint-dockerfile.yml)
 
-This Docker image runs the AceStream Engine in exposes the [HTTP
+This Docker image runs the AceStream Engine and exposes its [HTTP
 API](https://docs.acestream.net/en/developers/connect-to-engine/).
 
 As a result, you will be able to watch AceStreams over HLS or MPEG-TS, without
