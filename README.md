@@ -21,13 +21,19 @@ docker run -t -p 80:80 ghcr.io/martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
-(VLC, IINA, etc.) to the URL
+(VLC, IINA, etc.) to either of the below URLs. For MPEG TS:
 
 ```
 http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
 ```
 
-Where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStream channel.
+For HLS:
+
+```
+http://127.0.0.1:6878/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
+```
+
+where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStream channel.
 
 This image can also be deployed to a server, where it can proxy AceStream
 content over HTTP.
@@ -51,15 +57,10 @@ docker-compose up --build
 
 The image will now be running, with the following ports exposed:
 
-- **80**: [Caddy] HTTP reverse proxy, proxying the AceStream HTTP server but with more user friendly paths
-- **443**: Ditto, but serving HTTPS requests
-- **6878**: AceStream listener for access to the AceStream proxy without going
-through Caddy. This is the sever Caddy reverse proxies. This takes the following path:
-`/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2d`
+- **80**: AceStream engine port. Docs for command line arguments and debugging
+can be found [here][acestream]
 
 
-[Caddy]: https://caddyserver.com/
-[caddy-auto-https]: https://caddyserver.com/docs/automatic-https
-[Let's Encrypt]: https://letsencrypt.org/
+[acestream]: https://docs.acestream.net/en/developers/
 [#5]: https://github.com/martinbjeldbak/acestream-http-proxy/issues/5
 [#13]: https://github.com/martinbjeldbak/acestream-http-proxy/issues/13
