@@ -28,7 +28,7 @@ RUN apt-get update \
   && mv acestream /opt/acestream \
   && pushd /opt/acestream || exit \
   && bash ./install_dependencies.sh \
-  && popd
+  && popd || exit
 
 
 EXPOSE 6878/tcp
