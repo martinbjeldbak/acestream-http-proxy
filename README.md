@@ -2,13 +2,15 @@
 [![Build and push Docker image to DockerHub](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/build-and-push-docker.yml/badge.svg?event=release)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/build-and-push-docker.yml)
 [![Lint](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint-dockerfile.yml/badge.svg)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint-dockerfile.yml)
 
-This docker image installs and runs the AceStream Engine in Ubuntu and exposes the [HTTP API](https://docs.acestream.net/en/developers/connect-to-engine/).
+This Docker image runs the AceStream Engine in exposes the [HTTP
+API](https://docs.acestream.net/en/developers/connect-to-engine/).
 
-As a result, you will be able to watch live AceStream sources without needing
-to install the AceStream player or other dependencies locally.
+As a result, you will be able to watch AceStreams over HLS or MPEG-TS, without
+needing to install the AceStream player or any other dependencies locally.
 
 This is especially useful for Desktop and NAS usage for anyone who wants to
-tune in to AceStream channels.
+tune in to AceStream channels, and who don't want to go through the trouble of
+installing AceStream and its dependencies natively.
 
 Note: ARM-based CPUs are not currently supported, see issues [#5] and [#13].
 
@@ -21,17 +23,19 @@ docker run -t -p 80:80 ghcr.io/martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
-(VLC, IINA, etc.) to either of the below URLs. For MPEG TS:
-
-```
-http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
-```
+(VLC, IINA, etc.) to either of the below URLs.
 
 For HLS:
 
-```
-http://127.0.0.1:6878/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
-```
+    ```console
+    http://127.0.0.1:6878/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
+    ```
+
+For MPEG-TS:
+
+    ```console
+    http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
+    ```
 
 where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStream channel.
 
