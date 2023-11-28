@@ -17,14 +17,14 @@ Note: ARM-based CPUs are not currently supported, see issues [#5] and [#13].
 Ensure you have [Docker](https://www.docker.com) installed and running. You can then pull down and run the container as shown below.
 
 ```console
-docker run -t -p 80:6878 ghcr.io/martinbjeldbak/acestream-http-proxy
+docker run -t -p 6878:6878 ghcr.io/martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
 (VLC, IINA, etc.) to the URL
 
 ```
-http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
+http://127.0.0.1:6878/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
 ```
 
 Where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the desired AceStream channel.
