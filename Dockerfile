@@ -30,8 +30,12 @@ RUN apt-get update \
   && bash ./install_dependencies.sh \
   && popd || exit
 
+RUN apt install -y curl supervisor jq 
+COPY supervisor.conf /etc/supervisor/conf.d/
+COPY api-configuration.sh /
 
-EXPOSE 80/tcp
+ENTRYPOINT ["/usr/bin/supervisord"]
+CMD ["-n", "-c", "/etc/supervisor/supervisord.conf"]
 
-ENTRYPOINT ["/opt/acestream/start-engine"]
-CMD ["--client-console", "--http-port", "80"]
+EXPOSE 6878/tcp
+

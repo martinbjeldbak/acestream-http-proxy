@@ -19,7 +19,7 @@ Note: ARM-based CPUs are not currently supported, see issues [#5] and [#13].
 Ensure you have [Docker](https://www.docker.com) installed and running. You can then pull down and run the container as shown below.
 
 ```console
-docker run -t -p 80:80 ghcr.io/martinbjeldbak/acestream-http-proxy
+docker run -t -p 6878:6878 martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
@@ -28,19 +28,19 @@ streaming protocol.
 
 For HLS:
 ```console
-http://127.0.0.1/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
+http://127.0.0.1:6878/ace/manifest.m3u8?id=dd1e67078381739d14beca697356ab76d49d1a2
 ```
 
 For MPEG-TS:
 
 ```console
-http://127.0.0.1/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
+http://127.0.0.1:6878/ace/getstream?id=dd1e67078381739d14beca697356ab76d49d1a2
 ```
 
 where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the AceStream channel.
 
 This image can also be deployed to a server, where it can proxy AceStream
-content over HTTP.
+content over HTTP. To able to reach it from remote you need to set ALLOW_REMOTE_ACCESS=yes as environment variable  
 
 ## Contributing
 
