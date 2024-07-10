@@ -33,6 +33,7 @@ RUN apt-get update \
 RUN apt install -y curl supervisor jq 
 COPY supervisor.conf /etc/supervisor/conf.d/
 COPY api-configuration.sh /
+ENV ALLOW_REMOTE_ACCESS="no"
 
 ENTRYPOINT ["/usr/bin/supervisord"]
 CMD ["-n", "-c", "/etc/supervisor/supervisord.conf"]
