@@ -18,6 +18,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
       python3.10 ca-certificates wget sudo \
+      curl supervisor jq \
   && rm -rf /var/lib/apt/lists/* \
   #
   # Download acestream
@@ -30,7 +31,6 @@ RUN apt-get update \
   && bash ./install_dependencies.sh \
   && popd || exit
 
-RUN apt install -y curl supervisor jq 
 COPY supervisor.conf /etc/supervisor/conf.d/
 COPY api-configuration.sh /
 ENV ALLOW_REMOTE_ACCESS="no"
