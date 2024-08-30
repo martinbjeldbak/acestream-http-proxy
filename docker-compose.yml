@@ -3,4 +3,6 @@ services:
   app:
     build: .
     ports:
-      - '6878:80'
+      - '6878:6878'
+    environment:
+      - ALLOW_REMOTE_ACCESS=no
