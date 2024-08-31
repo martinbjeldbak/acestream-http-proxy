@@ -32,6 +32,7 @@ RUN apt-get update \
 
 ENV ALLOW_REMOTE_ACCESS="no"
 ENV HTTP_PORT=6878
+ENV EXTRA_FLAGS=''
 
 COPY run.sh /
 

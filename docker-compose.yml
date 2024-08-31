@@ -6,3 +6,5 @@ services:
       - '6878:6878'
     environment:
       - ALLOW_REMOTE_ACCESS=no # change to "yes" to allow internet access
+      # add any extra command line option mentioned in https://docs.acestream.net/developers/engine-command-line-options/
+      - EXTRA_FLAGS='' 

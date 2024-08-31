@@ -1,4 +1,3 @@
-EXTRA_FLAGS=''
 if [[ $ALLOW_REMOTE_ACCESS == "yes" ]];then
     EXTRA_FLAGS="$EXTRA_FLAGS --bind-all"
 fi
