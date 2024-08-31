@@ -19,7 +19,7 @@ Note: ARM-based CPUs are not currently supported, see issues [#5] and [#13].
 Ensure you have [Docker](https://www.docker.com) installed and running. You can then pull down and run the container as shown below.
 
 ```console
-docker run -t -p 6878:6878 martinbjeldbak/acestream-http-proxy
+docker run -t -p 6878:6878 ghcr.io/martinbjeldbak/acestream-http-proxy
 ```
 
 You are then able to access AceStreams by pointing your favorite media player
@@ -41,6 +41,20 @@ where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the AceStream chan
 
 This image can also be deployed to a server, where it can proxy AceStream
 content over HTTP. To able to reach it from remote you need to set ALLOW_REMOTE_ACCESS=yes as environment variable  
+
+You can also run it using docker-compose with
+
+```yaml
+---
+services:
+  acestream-http-proxy:
+    image: ghcr.io/martinbjeldbak/acestream-http-proxy
+    container_name: acestream-http-proxy
+    ports:
+      - 6878:6878
+```
+
+for an example, see the [docker-compose.yml](./docker-compose.yml) file in this repository.
 
 ## Contributing
 

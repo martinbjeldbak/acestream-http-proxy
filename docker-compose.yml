@@ -1,8 +1,8 @@
-version: '3.9'
+---
 services:
   app:
     build: .
     ports:
       - '6878:6878'
     environment:
-      - ALLOW_REMOTE_ACCESS=no
+      - ALLOW_REMOTE_ACCESS=no # change to "yes" to allow internet access
