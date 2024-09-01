@@ -18,7 +18,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
       python3.10 ca-certificates wget sudo \
-      curl supervisor jq \
   && rm -rf /var/lib/apt/lists/* \
   #
   # Download acestream
@@ -31,12 +30,14 @@ RUN apt-get update \
   && bash ./install_dependencies.sh \
   && popd || exit
 
-COPY supervisor.conf /etc/supervisor/conf.d/
-COPY api-configuration.sh /
 ENV ALLOW_REMOTE_ACCESS="no"
+ENV HTTP_PORT=6878
+ENV EXTRA_FLAGS=''
 
-ENTRYPOINT ["/usr/bin/supervisord"]
-CMD ["-n", "-c", "/etc/supervisor/supervisord.conf"]
+COPY run.sh /
+
+ENTRYPOINT ["/usr/bin/bash"]
+CMD ["/run.sh"]
 
 EXPOSE 6878/tcp
 
