@@ -11,6 +11,9 @@ LABEL \
     org.opencontainers.image.vendor="https://martinbjeldbak.com"
 
 ENV ACESTREAM_VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10"
+ENV ALLOW_REMOTE_ACCESS="no"
+ENV HTTP_PORT=6878
+ENV EXTRA_FLAGS=""
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -30,9 +33,9 @@ RUN apt-get update \
   && bash ./install_dependencies.sh \
   && popd || exit
 
-ENV ALLOW_REMOTE_ACCESS="no"
-ENV HTTP_PORT=6878
-ENV EXTRA_FLAGS=''
+
+COPY requirements.txt /
+RUN pip install -r requirements.txt
 
 COPY run.sh /
 
