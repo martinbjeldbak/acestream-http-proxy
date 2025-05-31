@@ -1,10 +1,12 @@
+# syntax=docker/dockerfile:1
+
 FROM docker.io/library/python:3.10-bookworm
 ARG VERSION
 
 LABEL \
     maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
     org.opencontainers.image.title="acestream-http-proxy" \
-    org.opencontainers.image.description="Stream AceStream sources on macOS and other systems without needing to install AceStream player" \
+    org.opencontainers.image.description="Stream AceStream sources without needing to install AceStream player" \
     org.opencontainers.image.authors="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
     org.opencontainers.image.url="https://github.com/martinbjeldbak/acestream-http-proxy" \
     org.opencontainers.image.vendor="https://martinbjeldbak.com"
@@ -28,7 +30,6 @@ ENV VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
 USER root
 WORKDIR /app
 
-# Install acestream dependencies
 RUN \
   apt-get update \
   && \
@@ -36,26 +37,27 @@ RUN \
       bash \
       ca-certificates \
       catatonit \
+      nano \
       libgirepository1.0-dev
 
 RUN \
-  mkdir -p /app \
-  && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
-      | tar xzf - -C /app \
-  && pip install uv \
-  && uv pip install --requirement /app/requirements.txt \
-  && chown -R root:root /app && chmod -R 755 /app \
-  && pip uninstall --yes uv \
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  && apt-get autoremove -y \
-  && apt-get clean \
-  && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/
+    groupadd --gid 1000 appuser \
+    && useradd --uid 1000 --gid 1000 -m appuser \
+    && mkdir -p /app \
+    && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
+        | tar xzf - -C /app \
+    && pip install uv \
+    && uv pip install --requirement /app/requirements.txt \
+    && chown -R appuser:appuser /app && chmod -R 755 /app \
+    && pip uninstall --yes uv \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/
 
 COPY . /
 
-# USER nobody:nogroup
-# WORKDIR /config
-# VOLUME [ "/config" ]
+USER appuser
 
 ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]
 
