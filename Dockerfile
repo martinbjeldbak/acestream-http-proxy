@@ -1,7 +1,6 @@
 # syntax=docker/dockerfile:1
 
 FROM docker.io/library/python:3.10-bookworm
-ARG VERSION
 
 LABEL \
     maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
