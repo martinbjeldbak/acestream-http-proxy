@@ -31,17 +31,15 @@ USER root
 WORKDIR /app
 
 RUN \
-  apt-get update \
-  && \
-  apt-get install --no-install-recommends --no-install-suggests -y \
-      bash \
-      ca-certificates \
-      catatonit \
-      nano \
-      libgirepository1.0-dev
-
-RUN \
-    groupadd --gid 1000 appuser \
+    apt-get update \
+    && \
+    apt-get install --no-install-recommends --no-install-suggests -y \
+        bash \
+        ca-certificates \
+        catatonit \
+        nano \
+        libgirepository1.0-dev \
+    && groupadd --gid 1000 appuser \
     && useradd --uid 1000 --gid 1000 -m appuser \
     && mkdir -p /app \
     && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
