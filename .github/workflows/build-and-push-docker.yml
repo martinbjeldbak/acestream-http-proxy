@@ -1,5 +1,7 @@
+---
 name: Build and push Docker image to DockerHub
-on:
+
+on: # yamllint disable-line rule:truthy
   push:
     tags:
       - 'v*'
