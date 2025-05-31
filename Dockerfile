@@ -19,7 +19,8 @@ ENV DEBIAN_FRONTEND="noninteractive" \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     UV_NO_CACHE=true \
-    UV_SYSTEM_PYTHON=true
+    UV_SYSTEM_PYTHON=true \
+    PYTHON_EGG_CACHE=/.cache
 
 ENV VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
     ALLOW_REMOTE_ACCESS="no" \
@@ -41,11 +42,12 @@ RUN \
     && groupadd --gid 1000 appuser \
     && useradd --uid 1000 --gid 1000 -m appuser \
     && mkdir -p /app \
+    && mkdir -p /.cache \
     && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
         | tar xzf - -C /app \
     && pip install uv \
     && uv pip install --requirement /app/requirements.txt \
-    && chown -R appuser:appuser /app && chmod -R 755 /app \
+    && chown -R appuser:appuser /.cache /app && chmod -R 755 /app \
     && pip uninstall --yes uv \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && apt-get autoremove -y \
