@@ -10,9 +10,17 @@ LABEL \
     org.opencontainers.image.vendor="https://martinbjeldbak.com"
 
 ENV DEBIAN_FRONTEND="noninteractive" \
+    CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
+    PIP_BREAK_SYSTEM_PACKAGES=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_ROOT_USER_ACTION=ignore \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
+    UV_NO_CACHE=true \
+    UV_SYSTEM_PYTHON=true
+
+ENV VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
     ALLOW_REMOTE_ACCESS="no" \
     HTTP_PORT=6878 \
     EXTRA_FLAGS=''
@@ -28,18 +36,17 @@ RUN \
       bash \
       ca-certificates \
       catatonit \
-      curl \
-      python3-pip libpython3.10 \
-      libcairo2-dev libxt-dev libgirepository1.0-dev \
-      python3-gi gobject-introspection gir1.2-gtk-3.0
+      libgirepository1.0-dev
 
 RUN \
   mkdir -p /app \
   && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
       | tar xzf - -C /app \
-  && pip install --requirement /app/requirements.txt \
-  && pip install pycairo "PyGObject<3.51.0" \
+  && pip install uv \
+  && uv pip install --requirement /app/requirements.txt \
+  && uv pip install pycairo "PyGObject<3.51.0" \
   && chown -R root:root /app && chmod -R 755 /app \
+  && pip uninstall --yes uv \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && apt-get autoremove -y \
   && apt-get clean \
