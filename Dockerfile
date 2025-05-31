@@ -28,6 +28,7 @@ ENV VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
 USER root
 WORKDIR /app
 
+# hadolint ignore=DL4006
 RUN \
     apt-get update \
     && \
