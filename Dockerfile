@@ -44,7 +44,7 @@ RUN \
       | tar xzf - -C /app \
   && pip install uv \
   && uv pip install --requirement /app/requirements.txt \
-  && uv pip install pycairo "PyGObject<3.51.0" \
+  && uv pip install "PyGObject<3.51.0" \
   && chown -R root:root /app && chmod -R 755 /app \
   && pip uninstall --yes uv \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
