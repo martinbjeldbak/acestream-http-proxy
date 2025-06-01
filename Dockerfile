@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM docker.io/library/python:3.10-bookworm
+FROM docker.io/library/python:3.10-slim-bookworm
 
 LABEL \
     maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
@@ -37,6 +37,7 @@ RUN \
         bash \
         ca-certificates \
         catatonit \
+        curl \
         nano \
         libgirepository1.0-dev \
     && groupadd --gid 1000 appuser \
