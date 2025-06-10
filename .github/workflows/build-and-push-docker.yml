@@ -5,6 +5,7 @@ on: # yamllint disable-line rule:truthy
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
 
 permissions: read-all
 
