@@ -1,43 +1,65 @@
 # syntax=docker/dockerfile:1
 
-FROM ubuntu:22.04
+FROM docker.io/library/python:3.10-slim-bookworm
 
 LABEL \
     maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
     org.opencontainers.image.title="acestream-http-proxy" \
-    org.opencontainers.image.description="Stream AceStream sources on macOS and other systems without needing to install AceStream player" \
+    org.opencontainers.image.description="Stream AceStream sources without needing to install AceStream player" \
     org.opencontainers.image.authors="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
     org.opencontainers.image.url="https://github.com/martinbjeldbak/acestream-http-proxy" \
     org.opencontainers.image.vendor="https://martinbjeldbak.com"
 
-ENV ACESTREAM_VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10"
+ENV DEBIAN_FRONTEND="noninteractive" \
+    CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
+    PIP_BREAK_SYSTEM_PACKAGES=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_ROOT_USER_ACTION=ignore \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_NO_CACHE=true \
+    UV_SYSTEM_PYTHON=true \
+    PYTHON_EGG_CACHE=/.cache
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+ENV VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
+    ALLOW_REMOTE_ACCESS="no" \
+    EXTRA_FLAGS=''
 
-# Install acestream dependencies
-RUN apt-get update \
-  && apt-get install --no-install-recommends -y \
-      python3.10 ca-certificates wget sudo \
-  && rm -rf /var/lib/apt/lists/* \
-  #
-  # Download acestream
-  && wget --progress=dot:giga "https://download.acestream.media/linux/acestream_${ACESTREAM_VERSION}.tar.gz" \
-  && mkdir acestream \
-  && tar zxf "acestream_${ACESTREAM_VERSION}.tar.gz" -C acestream \
-  && rm "acestream_${ACESTREAM_VERSION}.tar.gz" \
-  && mv acestream /opt/acestream \
-  && pushd /opt/acestream || exit \
-  && bash ./install_dependencies.sh \
-  && popd || exit
+USER root
+WORKDIR /app
 
-ENV ALLOW_REMOTE_ACCESS="no"
-ENV HTTP_PORT=6878
-ENV EXTRA_FLAGS=''
+# hadolint ignore=DL4006,DL3008,DL3013
+RUN \
+    apt-get update \
+    && \
+    apt-get install --no-install-recommends --no-install-suggests -y \
+        bash \
+        ca-certificates \
+        catatonit \
+        curl \
+        nano \
+        libgirepository1.0-dev \
+    && groupadd --gid 1000 appuser \
+    && useradd --uid 1000 --gid 1000 -m appuser \
+    && mkdir -p /app \
+    && mkdir -p /.cache \
+    && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
+        | tar xzf - -C /app \
+    && pip install uv \
+    && uv pip install --requirement /app/requirements.txt \
+    && chown -R appuser:appuser /.cache /app && chmod -R 755 /app \
+    && pip uninstall --yes uv \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/
 
-COPY run.sh /
+COPY . /
 
-ENTRYPOINT ["/usr/bin/bash"]
-CMD ["/run.sh"]
+USER appuser
+
+ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]
 
 EXPOSE 6878/tcp
 
