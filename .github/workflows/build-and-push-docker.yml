@@ -12,6 +12,8 @@ jobs:
   push-to-registries:
     name: Push Docker image to Docker Hub and GitHub Packages
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
