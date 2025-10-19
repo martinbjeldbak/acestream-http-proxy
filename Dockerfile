@@ -22,7 +22,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
     UV_SYSTEM_PYTHON=true \
     PYTHON_EGG_CACHE=/.cache
 
-ENV VERSION="3.2.3_ubuntu_22.04_x86_64_py3.10" \
+ENV VERSION="3.2.11_ubuntu_22.04_x86_64_py3.10" \
     ALLOW_REMOTE_ACCESS="no" \
     EXTRA_FLAGS=''
 
