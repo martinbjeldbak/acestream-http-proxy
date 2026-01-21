@@ -8,5 +8,5 @@ fi
 exec \
 	/app/start-engine \
 	--client-console \
-	"$EXTRA_FLAGS" \
+	$EXTRA_FLAGS \
 	"$@"
