@@ -7,4 +7,4 @@ services:
     environment:
       - ALLOW_REMOTE_ACCESS=no # change to "yes" to allow internet access
       # add any extra command line option mentioned in https://docs.acestream.net/developers/engine-command-line-options/
-      - EXTRA_FLAGS=''
+      - EXTRA_FLAGS=--cache-dir /root/.ACEStream/cache --cache-limit 1
