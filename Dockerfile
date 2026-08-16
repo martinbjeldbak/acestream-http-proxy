@@ -8,7 +8,9 @@ LABEL \
     org.opencontainers.image.description="Stream AceStream sources without needing to install AceStream player" \
     org.opencontainers.image.authors="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
     org.opencontainers.image.url="https://github.com/martinbjeldbak/acestream-http-proxy" \
-    org.opencontainers.image.vendor="https://martinbjeldbak.com"
+    org.opencontainers.image.documentation="https://github.com/martinbjeldbak/acestream-http-proxy#readme" \
+    org.opencontainers.image.vendor="https://martinbjeldbak.com" \
+    org.opencontainers.image.licenses="MIT"
 
 ENV DEBIAN_FRONTEND="noninteractive" \
     CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
