@@ -69,7 +69,11 @@ appreciated!
 
 Dockerfile steps are roughly guided by <https://wiki.acestream.media/Install_Ubuntu>.
 
+<!-- textlint-disable terminology -->
+
 For a list of AceStream versions, see here: <https://docs.acestream.net/products/#linux>
+
+<!-- textlint-enable terminology -->
 
 For convenience of easy image rebuilding, this repository contains a
 [`docker-compose.yml`](./docker-compose.yml) file. You can then build & run the
@@ -81,8 +85,8 @@ docker-compose up --build
 
 The image will now be running, with the following ports exposed:
 
-- **6878**: AceStream engine port. Docs for command line arguments and debugging
-can be found [here][acestream]
+- **6878**: AceStream engine port. See the [AceStream developer
+  documentation][acestream] for command line arguments and debugging
 
 
 [acestream]: https://docs.acestream.net/en/developers/
