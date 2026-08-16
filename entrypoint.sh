@@ -7,6 +7,7 @@ fi
 
 exec \
 	/app/start-engine \
+	--live-cache-type "memory" \
 	--client-console \
 	$EXTRA_FLAGS \
 	"$@"
