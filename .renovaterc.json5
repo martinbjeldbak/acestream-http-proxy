@@ -1,0 +1,13 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:best-practices", ":timezone(Australia/Sydney)"],
+  packageRules: [
+    {
+      description: "Pin base Python image to the 3.10 line. AceStream ships prebuilt cp310 wheels/eggs and compiled extensions that won't load on other Python versions.",
+      matchManagers: ["dockerfile"],
+      matchPackageNames: ["/python/"],
+      matchUpdateTypes: ["major", "minor"],
+      enabled: false,
+    },
+  ],
+}
