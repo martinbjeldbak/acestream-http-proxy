@@ -1,6 +1,7 @@
 # AceStream HTTP Proxy
 [![Build and push Docker image to DockerHub](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/build-and-push-docker.yml/badge.svg)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/build-and-push-docker.yml)
-[![Lint](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint-dockerfile.yml/badge.svg)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint-dockerfile.yml)
+[![Lint](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint.yaml/badge.svg)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/lint.yaml)
+[![Renovate](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/renovate.yaml/badge.svg)](https://github.com/martinbjeldbak/acestream-http-proxy/actions/workflows/renovate.yaml)
 
 This Docker image runs the AceStream Engine and exposes its [HTTP
 API](https://docs.acestream.net/en/developers/connect-to-engine/).
