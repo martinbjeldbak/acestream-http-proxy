@@ -1,0 +1,4 @@
+# DS-0026: HEALTHCHECK is intentionally omitted. This image is primarily
+# consumed via Kubernetes/orchestrator-managed deployments that use their
+# own liveness/readiness probes, making a Docker-level HEALTHCHECK redundant.
+DS-0026

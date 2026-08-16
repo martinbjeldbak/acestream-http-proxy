@@ -62,4 +62,3 @@ USER appuser
 ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]
 
 EXPOSE 6878/tcp
-

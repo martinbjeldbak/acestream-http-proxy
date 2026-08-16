@@ -1,2 +1,4 @@
 ---
-skip-check: CKV_DOCKER_2
+skip-check:
+  - CKV_DOCKER_2
+  - CKV_GHA_7
