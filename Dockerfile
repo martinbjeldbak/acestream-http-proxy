@@ -46,11 +46,12 @@ RUN \
     && useradd --uid 1000 --gid 1000 -m appuser \
     && mkdir -p /app \
     && mkdir -p /.cache \
+    && mkdir -p /home/appuser/.ACEStream/cache \
     && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
         | tar xzf - -C /app \
     && pip install uv \
     && uv pip install --requirement /app/requirements.txt \
-    && chown -R appuser:appuser /.cache /app && chmod -R 755 /app \
+    && chown -R appuser:appuser /.cache /app /home/appuser/.ACEStream && chmod -R 755 /app \
     && pip uninstall --yes uv \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && apt-get autoremove -y \
@@ -64,3 +65,5 @@ USER appuser
 ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]
 
 EXPOSE 6878/tcp
+
+VOLUME ["/home/appuser/.ACEStream"]

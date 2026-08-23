@@ -17,4 +17,9 @@ services:
     environment:
       - ALLOW_REMOTE_ACCESS=no # change to "yes" to allow internet access
       # add any extra command line option mentioned in https://docs.acestream.net/developers/engine-command-line-options/
+      # e.g. override the defaults below with EXTRA_FLAGS=--cache-dir /home/appuser/.ACEStream/cache --cache-limit 5
       - EXTRA_FLAGS=''
+    volumes:
+      # - ./ACEStream:/home/appuser/.ACEStream # persist on the host across restarts
+      - type: tmpfs                            # keep it in RAM instead
+        target: /home/appuser/.ACEStream

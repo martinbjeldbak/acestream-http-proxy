@@ -7,7 +7,8 @@ fi
 
 exec \
 	/app/start-engine \
-	--live-cache-type "memory" \
+	--cache-dir /home/appuser/.ACEStream/cache \
+	--cache-limit 1 \
 	--client-console \
 	$EXTRA_FLAGS \
 	"$@"
