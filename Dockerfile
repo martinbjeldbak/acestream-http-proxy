@@ -31,6 +31,8 @@ ENV VERSION="3.2.11_ubuntu_22.04_x86_64_py3.10" \
 USER root
 WORKDIR /app
 
+COPY requirements.txt /requirements.txt
+
 # hadolint ignore=DL4006,DL3008,DL3013
 RUN \
     apt-get update \
@@ -48,9 +50,9 @@ RUN \
     && mkdir -p /.cache \
     && mkdir -p /home/appuser/.ACEStream/cache \
     && curl -fsSL "https://download.acestream.media/linux/acestream_${VERSION}.tar.gz" \
-        | tar xzf - -C /app \
+        | tar xzf - -C /app --exclude=requirements.txt \
     && pip install uv \
-    && uv pip install --requirement /app/requirements.txt \
+    && uv pip install --requirement /requirements.txt --require-hashes \
     && chown -R appuser:appuser /.cache /app /home/appuser/.ACEStream && chmod -R 755 /app \
     && pip uninstall --yes uv \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \

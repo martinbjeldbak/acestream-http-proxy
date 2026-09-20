@@ -1,0 +1,7 @@
+pycryptodome
+lxml
+apsw
+psutil
+pynacl
+iso8601
+aiohttp

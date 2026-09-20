@@ -43,7 +43,7 @@ where `dd1e67078381739d14beca697356ab76d49d1a2d` is the ID of the AceStream chan
 This image can also be deployed to a server, where it can proxy AceStream
 content over HTTP. To able to reach it from remote you need to set ALLOW_REMOTE_ACCESS=yes as environment variable  
 
-You can also run it using docker-compose with
+You can also run it using Compose with
 
 ```yaml
 ---
@@ -55,13 +55,14 @@ services:
       - 6878:6878
 ```
 
-for an example, see the [docker-compose.yml](./docker-compose.yml) file in this repository.
+for an example, see the [compose.yaml](./compose.yaml) file in this repository.
 
 ## Contributing
 
 First of all, thanks!
 
-Ensure you have Docker installed with support for docker-compose, as outlined
+Ensure you have a container runtime with Compose support (e.g. Docker with the
+Compose plugin, or Podman with `podman-compose`), as outlined
 above. This image is simply a simplified wrapper around the
 [AceStream][acestream] HTTP API in order to make it more user friendly to get
 running. All options supported by the AceStream Engine are supported in this
@@ -77,12 +78,14 @@ For a list of AceStream versions, see here: <https://docs.acestream.net/products
 <!-- textlint-enable terminology -->
 
 For convenience of easy image rebuilding, this repository contains a
-[`docker-compose.yml`](./docker-compose.yml) file. You can then build & run the
+[`compose.yaml`](./compose.yaml) file. You can then build & run the
 image locally by running the following command:
 
 ```console
-docker-compose up --build
+docker compose up --build
 ```
+
+(or `podman-compose up --build` if you're using Podman)
 
 The image will now be running, with the following ports exposed:
 
