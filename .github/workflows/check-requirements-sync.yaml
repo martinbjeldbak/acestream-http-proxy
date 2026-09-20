@@ -1,0 +1,31 @@
+---
+name: Check requirements.in sync
+
+on: # yamllint disable-line rule:truthy
+  push:
+    paths:
+      - Dockerfile
+      - requirements.in
+  pull_request:
+    paths:
+      - Dockerfile
+      - requirements.in
+
+permissions: {}
+
+jobs:
+  check:
+    name: requirements.in matches upstream tarball
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check requirements.in matches upstream
+        run: ./scripts/check-requirements-sync.sh
