@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
 
-FROM docker.io/library/python:3.10-slim-bookworm@sha256:2559be987fd64d61badbdafd303ea58a9ccab36d6c3c08bce219e762177d2eca
+FROM docker.io/library/python:3.10-slim-bookworm@sha256:f8aa74bffbe59d02f7442dba43c9ea72b2c34cc29aa7a7edc74b29521b23bb43
 
 LABEL \
     maintainer="Martin Bjeldbak Madsen <me@martinbjeldbak.com>" \
