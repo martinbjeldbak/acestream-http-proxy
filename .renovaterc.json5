@@ -20,6 +20,11 @@
       allowedVersions: "<=7.1.0",
     },
     {
+      description: "pycparser 3.12 requires Python >= 3.11 (3.11 requires >= 3.10). cffi pulls it in transitively, so a lockfile-only bump breaks `uv pip install` on the pinned 3.10 base image.",
+      matchPackageNames: ["pycparser"],
+      allowedVersions: "<=3.11",
+    },
+    {
       description: "Track unreleased commits of dockerhub-description. Upstream only publishes tagged releases, so the tagged release is stale while dist/ on main keeps the node24 runtime current.",
       matchManagers: ["github-actions"],
       matchPackageNames: ["peter-evans/dockerhub-description"],
