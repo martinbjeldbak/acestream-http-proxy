@@ -9,5 +9,12 @@
       matchUpdateTypes: ["major", "minor"],
       enabled: false,
     },
+    {
+      description: "Track unreleased commits of dockerhub-description. Upstream only publishes tagged releases, so the tagged release is stale while dist/ on main keeps the node24 runtime current.",
+      matchManagers: ["github-actions"],
+      matchPackageNames: ["peter-evans/dockerhub-description"],
+      versioning: "git",
+      pinDigests: false,
+    },
   ],
 }
