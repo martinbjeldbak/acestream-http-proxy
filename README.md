@@ -182,7 +182,7 @@ the engine reachable from your LAN/VPN only:
 
 | Path                                         | Note                        |
 | -------------------------------------------- | --------------------------- |
-| `/ace/manifest.m3u8`, `/ace/getstream`       | contains the content id     |
+| `/ace/manifest.m3u8`, `/ace/getstream`       | contains the content ID     |
 | `/ace/m/<hash>/<token>.m3u8`                 | playlist, per-session token |
 | `/ace/r/<hash>/<token>`, `/content/<hash>/…` | MPEG-TS redirect and stream |
 | `/ace/c/<hash>/<n>.ts`                       | HLS segments                |
