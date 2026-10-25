@@ -10,6 +10,16 @@
       enabled: false,
     },
     {
+      description: "apsw and multidict dropped Python 3.10 support (apsw 3.54.1.0 and multidict 7.2.1 require Python >= 3.11, which breaks the build on the pinned 3.10 base image). Keep them on the newest releases that still ship cp310 wheels or pure Python wheels.",
+      matchPackageNames: ["apsw"],
+      allowedVersions: "<=3.54.0.0",
+    },
+    {
+      description: "See the apsw rule above.",
+      matchPackageNames: ["multidict"],
+      allowedVersions: "<=7.1.0",
+    },
+    {
       description: "Track unreleased commits of dockerhub-description. Upstream only publishes tagged releases, so the tagged release is stale while dist/ on main keeps the node24 runtime current.",
       matchManagers: ["github-actions"],
       matchPackageNames: ["peter-evans/dockerhub-description"],
