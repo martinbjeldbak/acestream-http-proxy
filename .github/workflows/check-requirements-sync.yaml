@@ -10,6 +10,11 @@ on: # yamllint disable-line rule:truthy
     paths:
       - Dockerfile
       - requirements.in
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions: {}
 
